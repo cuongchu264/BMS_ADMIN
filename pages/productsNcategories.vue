@@ -74,7 +74,7 @@
                         <!-- NIKE -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-1 block variant="success">NIKE</b-button>
+                                <b-button v-b-toggle.accordion-1 block variant="success">GẠCH TRANG TRÍ</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -120,7 +120,7 @@
                         <!-- ADIDAS -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-2 block variant="success">ADIDAS</b-button>
+                                <b-button v-b-toggle.accordion-2 block variant="success">VẬT LIỆU THÔ</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -166,7 +166,7 @@
                         <!-- VANS -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-3 block variant="success">VANS</b-button>
+                                <b-button v-b-toggle.accordion-3 block variant="success">THIẾT BỊ NGÀNH NƯỚC</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -212,7 +212,7 @@
                         <!-- CONVERSE -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-4 block variant="success">CONVERSE</b-button>
+                                <b-button v-b-toggle.accordion-4 block variant="success">NGÓI LỢP NHÀ</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -388,7 +388,7 @@
                         <!-- NIKE -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-1 block variant="success">NIKE</b-button>
+                                <b-button v-b-toggle.accordion-1 block variant="success">NGÓI LỢP NHÀ</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -424,7 +424,7 @@
                         <!-- ADIDAS -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-2 block variant="success">ADIDAS</b-button>
+                                <b-button v-b-toggle.accordion-2 block variant="success">VẬT LIỆU THÔ</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -460,7 +460,7 @@
                         <!-- VANS -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-3 block variant="success">VANS</b-button>
+                                <b-button v-b-toggle.accordion-3 block variant="success">THIẾT BỊ NGÀNH NƯỚC</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
@@ -496,7 +496,7 @@
                         <!-- CONVERSE -->
                         <b-card no-body class="mb-1">
                             <b-card-header header-tag="header" class="p-1" role="tab">
-                                <b-button v-b-toggle.accordion-4 block variant="success">CONVERSE</b-button>
+                                <b-button v-b-toggle.accordion-4 block variant="success">NGÓI LỢP NHÀ</b-button>
                             </b-card-header>
                             <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
