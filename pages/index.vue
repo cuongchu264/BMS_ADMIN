@@ -4,20 +4,20 @@
         <form class="login-form" action="./" method="POST"  @submit.prevent="onSubmit">
             <div class="login-form__content">
                 <div class="text-center">
-                    <img  src="https://i.pinimg.com/originals/75/ee/39/75ee392159be8a3e25094c94ae7e03d4.gif" width="160" height="140" alt="">
+                    <img  src="https://cdn-icons-png.flaticon.com/512/4832/4832450.png" width="160" height="140" alt="">
                 </div>
-                <div class="login-form__header">SNEAKER SHOP ADMIN</div>
-                    <input class="login-form__input" type="text" name="dc_username"  v-model="dataSubmit.username"  placeholder="Username">
-                    <input class="login-form__input" type="password" name="dc_username" v-model="dataSubmit.password" placeholder="Password">
+                <div class="login-form__header">BUILDING MATERIALS ADMIN</div>
+                    <input v-model="dataSubmit.username" class="login-form__input" type="text"  name="dc_username"  placeholder="Username">
+                    <input v-model="dataSubmit.password" class="login-form__input" type="password" name="dc_username" placeholder="Password">
                 <button class="login-form__button" type="submit">Login</button>
             </div>
         </form>
     </body>
     <style>
         body {
-            background-image: url('https://i.pinimg.com/736x/b9/f9/cb/b9f9cbf47532518f6f1c2b7191e56da1.jpg') ;
+            background-image: url('https://cdn.pixabay.com/photo/2014/09/17/21/43/bricks-450106_960_720.jpg') ;
             margin: 15px;
-            margin-top: 180px;
+            margin-top: 140px;
         }
 
         .login-form,
@@ -109,8 +109,8 @@
     </main>
 </template>
 <script>
-import accountApi from '@/api/accountApi'
 import { mapActions } from 'vuex'
+import accountApi from '@/api/accountApi'
 export default {
     layout:'loginlayout',
     data(){
