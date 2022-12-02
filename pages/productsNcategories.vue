@@ -25,8 +25,6 @@
                                     <th scope="row">{{ cate.categoryId }}</th>
                                     <td>{{ cate.categoryName }}</td>
                                     <td>{{ cate.avatar }}</td>
-                                    <td><a type="button" class="btn btn-success" :href="getCategoriesEditurl(cate.categoryId)">Edit</a></td>
-                                    <td><button class="btn btn-danger" @click="DeleteCategories(cate.categoryId)" >Delete</button></td>
                                 </tr>
                             </tbody>
                         </table>
