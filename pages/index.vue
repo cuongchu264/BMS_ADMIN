@@ -17,7 +17,7 @@
         body {
             background-image: url('https://cdn.pixabay.com/photo/2014/09/17/21/43/bricks-450106_960_720.jpg') ;
             margin: 15px;
-            margin-top: 180px;
+            margin-top: 140px;
         }
 
         .login-form,
