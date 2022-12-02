@@ -36,7 +36,7 @@ export default {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: "SNEAKER SHOP"
+            text: "MATERIAL BUILDING SHOP"
           }
         }
       })

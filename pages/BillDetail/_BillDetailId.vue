@@ -9,7 +9,6 @@
                             <thead>
                                 <tr>
                                 <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Size</th>
                                 <th scope="col" class="text-center">Số lượng</th>
                                 <th scope="col">Giá</th>
                                 </tr>
@@ -17,15 +16,14 @@
                             <tbody >
                                 <tr v-for="(cartDetail,index) in BillDetail" :key="index">
                                     <th scope="row">{{ cartDetail.productName }}</th>
-                                    <td>{{ cartDetail.size }}</td>
                                     <td class="text-center">{{ cartDetail.quantity }}</td>
-                                    <td>${{ cartDetail.price }}</td>
+                                    <td>{{ cartDetail.price }}VND</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="container mt-5" style="border-top: 1px solid black;">
-                        <h5 class="mt-3">Tổng cộng {{BillDetail.length}} sản phẩm: <span>${{ total }} = {{ tranferMoney.toLocaleString() }}VND</span></h5>
+                        <h5 class="mt-3">Tổng cộng {{BillDetail.length}} sản phẩm: <span>{{ total }} VND</span></h5>
                     </div>
     </main>
 </template>
@@ -38,18 +36,11 @@ export default {
     },
     computed:{
         total() {
-            var total = 0;
-            for(var i = 0; i < this.BillDetail.length; i++) {
+            let total = 0;
+            for(let i = 0; i < this.BillDetail.length; i++) {
                 total += this.BillDetail[i].price * this.BillDetail[i].quantity;
             }
                 return total;
-        },
-        tranferMoney(){
-            var transfer = 0;
-            for(var i = 0; i < this.BillDetail.length; i++) {
-                transfer += this.BillDetail[i].price * this.BillDetail[i].quantity * 23000;
-            }
-                return transfer;
         },
     },
 }

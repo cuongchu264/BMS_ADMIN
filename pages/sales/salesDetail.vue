@@ -115,29 +115,29 @@ export default {
 
     computed:{
         total() {
-            var total = 0;
-            for(var i = 0; i < this.listBill.length; i++) {
-                total += this.listBill[i].total * 23000;
+            let total = 0;
+            for(let i = 0; i < this.listBill.length; i++) {
+                total += this.listBill[i].total;
             }
                 return total;
         },
         totalviaMonthNov() {
-            var totalviaMonthNov = 0;
-            for(var i = 0; i < this.listBillviaMonthNov.length; i++) {
+            let totalviaMonthNov = 0;
+            for(let i = 0; i < this.listBillviaMonthNov.length; i++) {
                 totalviaMonthNov += this.listBillviaMonthNov[i].total;
             }
                 return totalviaMonthNov;
         },
         totalviaMonthDec() {
-            var totalviaMonthDec = 0;
-            for(var i = 0; i < this.listBillviaMonthDec.length; i++) {
+            let totalviaMonthDec = 0;
+            for(let i = 0; i < this.listBillviaMonthDec.length; i++) {
                 totalviaMonthDec += this.listBillviaMonthDec[i].total;
             }
                 return totalviaMonthDec;
         },
         totalviaMonthJan() {
-            var totalviaMonthJan = 0;
-            for(var i = 0; i < this.listBillviaMonthJan.length; i++) {
+            let totalviaMonthJan = 0;
+            for(let i = 0; i < this.listBillviaMonthJan.length; i++) {
                 totalviaMonthJan += this.listBillviaMonthJan[i].total;
             }
                 return totalviaMonthJan;
@@ -157,7 +157,7 @@ export default {
 
         async getBillviaMonthNov(){
                 try{
-                const { data } = await catalogApi.getBillviaMonth(this.$axios,11)
+                const { data } = await catalogApi.getBillviaMonth(this.$axios,10)
                 console.log(data)
                 this.listBillviaMonthNov = data
                 }catch(err){
@@ -167,7 +167,7 @@ export default {
 
         async getBillviaMonthDec(){
                 try{
-                const { data } = await catalogApi.getBillviaMonth(this.$axios,12)
+                const { data } = await catalogApi.getBillviaMonth(this.$axios,11)
                 console.log(data)
                 this.listBillviaMonthDec = data
                 }catch(err){
@@ -177,7 +177,7 @@ export default {
 
         async getBillviaMonthJan(){
                 try{
-                const { data } = await catalogApi.getBillviaMonth(this.$axios,1)
+                const { data } = await catalogApi.getBillviaMonth(this.$axios,12)
                 console.log(data)
                 this.listBillviaMonthJan = data
                 }catch(err){
@@ -196,78 +196,78 @@ export default {
         },
 
         async sale(){
-            const nov = await catalogApi.getBillviaMonth(this.$axios,11)
+            const nov = await catalogApi.getBillviaMonth(this.$axios,10)
             this.sumbill = nov.data
-            await this.$axios.put('/api/ChartBills/15', {
-                    chartId: 15,
-                    chartMonth: 'Tháng 11 - 2021',
+            await this.$axios.put('/api/ChartBills/1', {
+                    chartId: 1,
+                    chartMonth: 'Tháng 10 - 2022',
                     chartSumOfBill: this.sumbill.length,
             })
-            const dec = await catalogApi.getBillviaMonth(this.$axios,12)
+            const dec = await catalogApi.getBillviaMonth(this.$axios,11)
             this.sumbill = dec.data
-            await this.$axios.put('/api/ChartBills/16', {
-                    chartId: 16,
-                    chartMonth: 'Tháng 12 - 2021',
+            await this.$axios.put('/api/ChartBills/2', {
+                    chartId: 2,
+                    chartMonth: 'Tháng 11 - 2022',
                     chartSumOfBill: this.sumbill.length,
             })
             this.$router.push('/sales/salesChart')
-            const jan = await catalogApi.getBillviaMonth(this.$axios,1)
+            const jan = await catalogApi.getBillviaMonth(this.$axios,12)
             this.sumbill = jan.data
-            await this.$axios.put('/api/ChartBills/17', {
-                    chartId: 17,
-                    chartMonth: 'Tháng 1 - 2022',
+            await this.$axios.put('/api/ChartBills/3', {
+                    chartId: 3,
+                    chartMonth: 'Tháng 12 - 2022',
                     chartSumOfBill: this.sumbill.length,
             })
             this.$router.push('/sales/salesChart')
         },
 
         async money(){
-            const nov = await catalogApi.getBillviaMonth(this.$axios,11)
+            const nov = await catalogApi.getBillviaMonth(this.$axios,10)
             this.sumbill = nov.data
-            await this.$axios.put('/api/MoneyCharts/3', {
-                    moneyChartId: 3,
-                    moneyChartMonth: 'Tháng 11 - 2021',
+            await this.$axios.put('/api/MoneyCharts/1', {
+                    moneyChartId: 1,
+                    moneyChartMonth: 'Tháng 10 - 2022',
                     chartSumOfMoney: this.totalviaMonthNov,
             })
-            const dec = await catalogApi.getBillviaMonth(this.$axios,12)
+            const dec = await catalogApi.getBillviaMonth(this.$axios,11)
             this.sumbill = dec.data
-            await this.$axios.put('/api/MoneyCharts/4', {
-                    moneyChartId: 4,
-                    moneyChartMonth: 'Tháng 12 - 2021',
+            await this.$axios.put('/api/MoneyCharts/2', {
+                    moneyChartId: 2,
+                    moneyChartMonth: 'Tháng 11 - 2022',
                     chartSumOfMoney: this.totalviaMonthDec,
             })
             this.$router.push('/sales/moneyChart')
-            const jan = await catalogApi.getBillviaMonth(this.$axios,1)
+            const jan = await catalogApi.getBillviaMonth(this.$axios,12)
             this.sumbill = jan.data
-            await this.$axios.put('/api/MoneyCharts/5', {
-                    moneyChartId: 5,
-                    moneyChartMonth: 'Tháng 1 - 2022',
+            await this.$axios.put('/api/MoneyCharts/3', {
+                    moneyChartId: 3,
+                    moneyChartMonth: 'Tháng 12 - 2022',
                     chartSumOfMoney: this.totalviaMonthJan,
             })
             this.$router.push('/sales/moneyChart')
         },
 
         async user(){
-            const nov = await catalogApi.getUserviaMonth(this.$axios,11)
+            const nov = await catalogApi.getUserviaMonth(this.$axios,10)
             this.listUserviaMonth = nov.data
             await this.$axios.put('/api/UserCharts/1', {
                     userChartId: 1,
-                    userChartMonth: 'Tháng 11 - 2021',
+                    userChartMonth: 'Tháng 10 - 2022',
                     chartSumOfUser: this.listUserviaMonth.length,
             })
-            const dec = await catalogApi.getUserviaMonth(this.$axios,12)
+            const dec = await catalogApi.getUserviaMonth(this.$axios,11)
             this.listUserviaMonth = dec.data
             await this.$axios.put('/api/UserCharts/2', {
                     userChartId: 2,
-                    userChartMonth: 'Tháng 12 - 2021',
+                    userChartMonth: 'Tháng 11 - 2022',
                     chartSumOfUser: this.listUserviaMonth.length,
             })
             this.$router.push('/sales/userChart')
-            const jan = await catalogApi.getUserviaMonth(this.$axios,1)
+            const jan = await catalogApi.getUserviaMonth(this.$axios,12)
             this.listUserviaMonth = jan.data
             await this.$axios.put('/api/UserCharts/3', {
                     userChartId: 3,
-                    userChartMonth: 'Tháng 1 - 2022',
+                    userChartMonth: 'Tháng 12 - 2022',
                     chartSumOfUser: this.listUserviaMonth.length,
             })
             this.$router.push('/sales/userChart')

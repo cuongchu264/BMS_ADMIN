@@ -24,7 +24,7 @@ export default {
           datasets: [
             {
              label: 'Tổng doanh thu qua các tháng (đơn vị: VND)',
-             data: responseData.map(item => item.chartSumOfMoney*23000),
+             data: responseData.map(item => item.chartSumOfMoney),
              backgroundColor: "transparent",
              borderColor: "green",
              pointBackgroundColor: "rgba(171, 71, 188, 1)"
@@ -36,7 +36,7 @@ export default {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: "SNEAKER SHOP"
+            text: "MATERIAL BUILDING SHOP"
           }
         }
       })
