@@ -95,7 +95,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -141,7 +141,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -187,7 +187,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -233,7 +233,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -400,7 +400,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -436,7 +436,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -472,7 +472,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -508,7 +508,7 @@
                                                 <tr>
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá tiền($)</th>
+                                                    <th scope="col" class="text-center">Giá tiền(VND)</th>
                                                     <th scope="col" class="text-center">Số lượng</th>
                                                 </tr>
                                             </thead>
@@ -655,7 +655,10 @@
 </template>
 
 <script>
+import Vue from "vue"
+import VueSimpleAlert from "vue-simple-alert"
 import catalogApi from '@/api/catalogApi'
+Vue.use(VueSimpleAlert);
   export default {
     layout: 'default',
     middleware: ['isAuthorize'],
@@ -920,12 +923,14 @@ import catalogApi from '@/api/catalogApi'
             }
         },
         DeleteProduct(id) {
-            this.$axios.delete('/api/Products/'+ id ).then(() =>{
-                this.getNike()
-                this.getDas()
-                this.getVans()
-                this.getCon()
-            })
+            this.$confirm("Bạn có muốn xóa sản phẩm này không?").then(() => {
+                this.$axios.delete('/api/Products/'+ id ).then(() =>{
+                    this.getNike()
+                    this.getDas()
+                    this.getVans()
+                    this.getCon()
+                })
+            });
         },
         getProductEditurl(ProductEditId){
             const url= 'ProductEdit/'+ ProductEditId;
@@ -1002,12 +1007,14 @@ import catalogApi from '@/api/catalogApi'
 
 
         DeleteHotProduct(id) {
-            this.$axios.delete('/api/HotProducts/'+ id ).then(() =>{
-                this.getHotNike()
-                this.getHotDas()
-                this.getHotVans()
-                this.getHotCon()
-            })
+            this.$confirm("Bạn có muốn xóa sản phẩm này không?").then(() => {
+                this.$axios.delete('/api/HotProducts/'+ id ).then(() =>{
+                    this.getHotNike()
+                    this.getHotDas()
+                    this.getHotVans()
+                    this.getHotCon()
+                })
+            });
         },
         getHotProductEditurl(HotProductEditId){
             const url= 'HotProductEdit/'+ HotProductEditId;

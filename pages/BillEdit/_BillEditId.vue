@@ -70,17 +70,19 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-7" label="Ngày giao hàng:" label-for="input-7">
+                            <b-form-group id="input-group-7" label="Trạng thái đơn hàng:" label-for="input-7">
                                 <b-form-group
                                     id="input-7"
-                                    v-model="Bill.status"
                                     required
                                     >
-                                    <b-form-input
-                                    id="input-7"
-                                    v-model="Bill.status"
-                                    required
-                                    ></b-form-input>
+                                    <b-form-select
+                                        id="input-7"
+                                        v-model="Bill.status"
+                                        required
+                                    >
+                                        <option>Chờ xác nhận</option>
+                                        <option>Đã xác nhận</option>
+                                    </b-form-select>
                                 </b-form-group>
                             </b-form-group>
                             <b-button style="margin: auto; display:block;" type="submit" variant="success">Update</b-button>

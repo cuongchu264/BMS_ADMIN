@@ -210,8 +210,8 @@
                                 <tr v-for="(newCate,index) in filteredNewCate" :key="index">
                                     <th scope="row">{{ newCate.newCateId }}</th>
                                     <td>{{ newCate.newCateName }}</td>
-                                    <td><a type="button" class="btn btn-success" :href="getNewCategoryEditurl(newCate.newCateId)">Edit</a></td>
-                                    <td><button class="btn btn-danger" @click="DeleteNewCategories(newCate.newCateId)" >Delete</button></td>
+                                    <!-- <td><a type="button" class="btn btn-success" :href="getNewCategoryEditurl(newCate.newCateId)">Edit</a></td>
+                                    <td><button class="btn btn-danger" @click="DeleteNewCategories(newCate.newCateId)" >Delete</button></td> -->
                                 </tr>
                             </tbody>
                         </table>
@@ -248,7 +248,10 @@
 </template>
 
 <script>
+import Vue from "vue"
+import VueSimpleAlert from "vue-simple-alert"
 import catalogApi from '@/api/catalogApi'
+Vue.use(VueSimpleAlert);
   export default {
     layout: 'default',
     middleware: ['isAuthorize'],
@@ -371,8 +374,10 @@ import catalogApi from '@/api/catalogApi'
 
         DeleteCarousel(id)
         {
-            this.$axios.delete('/api/Carousels/'+ id ).then(() =>{
-                this.getCarousel()
+            this.$confirm("Bạn có muốn xóa quảng cáo này không?").then(() => {
+                this.$axios.delete('/api/Carousels/'+ id ).then(() =>{
+                    this.getCarousel()
+                })
             })
         },
 
@@ -413,9 +418,11 @@ import catalogApi from '@/api/catalogApi'
 
         DeleteNew(id)
         {
-            this.$axios.delete('/api/News/'+ id ).then(() =>{
-                this.getNew()
-            })
+            this.$confirm("Bạn có muốn xóa bài viết này không?").then(() => {
+                this.$axios.delete('/api/News/'+ id ).then(() =>{
+                    this.getNew()
+                })
+            });
         },
 
         getNewEditurl(NewEditId){

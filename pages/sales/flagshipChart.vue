@@ -23,7 +23,7 @@ export default {
           labels: responseData.map(item => item.productName),
           datasets: [
             {
-             label: 'Top 5 sản phẩm bán chạy (đơn vị: đôi)',
+             label: 'Top 5 sản phẩm bán chạy (đơn vị: sản phẩm)',
              data: responseData.map(item => item.quantity),
              backgroundColor: "green",
             }
