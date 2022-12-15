@@ -69,6 +69,7 @@
                                         <th scope="col">Địa chỉ</th>
                                         <th scope="col">Ngày đặt hàng</th>
                                         <th scope="col">Trạng thái</th>
+                                        <th scope="col">Mô tả</th>
                                         </tr>
                                     </thead>
                                     <tbody >
@@ -80,6 +81,7 @@
                                             <td>{{ bill.address }}</td>
                                             <td>{{ getDate(bill.dayOrder) }}</td>
                                             <td>{{ bill.status }}</td>
+                                            <td>{{ bill.description }}</td>
                                             <td><a type="button" class="btn btn-primary" :href="getBillDetailurl(bill.billId)">Detail</a></td>
                                         </tr>
                                     </tbody>
