@@ -82,6 +82,7 @@
                                             <td>{{ getDate(bill.dayOrder) }}</td>
                                             <td>{{ bill.status }}</td>
                                             <td>{{ bill.description }}</td>
+                                            <td><a type="button" :id="'create_order_'+ bill.billId" class="btn btn-warning" :href="getBillDeliveryurl(bill.billId)">Delivery</a></td>
                                             <td><a type="button" class="btn btn-primary" :href="getBillDetailurl(bill.billId)">Detail</a></td>
                                         </tr>
                                     </tbody>
@@ -146,7 +147,6 @@
     </main>
 </template>
 <script>
-import catalogApi from '@/api/catalogApi'
 export default {
     layout:'default',
     middleware: ['isAuthorize'],
@@ -155,7 +155,7 @@ export default {
             tabBIllStatus: 0,
             search: '',
             // searchbill:'',
-            //sort and pagination
+            // sort and pagination
             listBillUnConfirm:[],
             currentSort1:'billId',
             currentSortDir1:'asc',
@@ -166,7 +166,8 @@ export default {
             currentSort2:'billId',
             currentSortDir2:'asc',
             pageSize2:10, 
-            currentPage2:1
+            currentPage2:1,
+            isCreatedOrder: false
         }
     },
 
@@ -176,7 +177,7 @@ export default {
             return this.currentPage1 === 1;
         },
         cantGoNext1() {
-            var totalPages = (Math.floor(this.filteredBillUnConfirm.length / this.pageSize1)) + 1;
+            const totalPages = (Math.floor(this.filteredBillUnConfirm.length / this.pageSize1)) + 1;
             return totalPages;
         },
         sortStr1() {
@@ -189,7 +190,7 @@ export default {
             return this.currentPage2 === 1;
         },
         cantGoNext2() {
-            var totalPages = (Math.floor(this.filteredBillConfirm.length / this.pageSize2)) + 1;
+            const totalPages = (Math.floor(this.filteredBillConfirm.length / this.pageSize2)) + 1;
             return totalPages;
         },
         sortStr2() {
@@ -213,53 +214,66 @@ export default {
     },
 
     async created(){
-        this.loadListBillUC()
-        this.loadListBillC()
+        await this.loadListBillUC()
+        await this.loadListBillC()
+        await this.CheckCreatedOrder()
     },
 
 
     methods:{
 
         async loadListBillUC() {
-            let data = await fetch(`https://localhost:44389/api/Bills/viaSortingAndPagination?Page_size=${this.pageSize1}&Current_page=${this.currentPage1}&Sort=${this.sortStr1}&Status=Ch%E1%BB%9D%20x%C3%A1c%20nh%E1%BA%ADn`);
+            const data = await fetch(`https://localhost:44389/api/Bills/viaSortingAndPagination?Page_size=${this.pageSize1}&Current_page=${this.currentPage1}&Sort=${this.sortStr1}&Status=Ch%E1%BB%9D%20x%C3%A1c%20nh%E1%BA%ADn`);
             this.listBillUnConfirm  = await data.json();  
             },
-            sort1:function(s) {
-            //if s == current sort, reverse
+            sort1(s) {
+            // if s == current sort, reverse
             if(s === this.currentSort1) {
                 this.currentSortDir1 = this.currentSortDir1==='asc'?'desc':'asc';
             } else this.currentSortDir1 = 'asc';
             this.currentSort1 = s;
             this.loadListBillUC();
             },
-            nextPage1:function() {
+            nextPage1() {
             this.currentPage1++;
             this.loadListBillUC();
             },
-            prevPage1:function() {
+            prevPage1() {
             if(this.currentPage1 > 1) this.currentPage1--;
             this.loadListBillUC();
         },
 
         async loadListBillC() {
-            let data = await fetch(`https://localhost:44389/api/Bills/viaSortingAndPagination?Page_size=${this.pageSize2}&Current_page=${this.currentPage2}&Sort=${this.sortStr2}&Status=%C4%90%C3%A3%20x%C3%A1c%20nh%E1%BA%ADn`);
+            const data = await fetch(`https://localhost:44389/api/Bills/viaSortingAndPagination?Page_size=${this.pageSize2}&Current_page=${this.currentPage2}&Sort=${this.sortStr2}&Status=%C4%90%C3%A3%20x%C3%A1c%20nh%E1%BA%ADn`);
             this.listBillConfirm = await data.json();  
             },
-            sort2:function(s) {
-            //if s == current sort, reverse
+            sort2(s) {
+            // if s == current sort, reverse
             if(s === this.currentSort2) {
                 this.currentSortDir2 = this.currentSortDir2==='asc'?'desc':'asc';
             } else this.currentSortDir2 = 'asc';
             this.currentSort2 = s;
             this.loadListBillC();
             },
-            nextPage2:function() {
+            nextPage2() {
             this.currentPage2++;
             this.loadListBillC();
             },
-            prevPage2:function() {
+            prevPage2() {
             if(this.currentPage2 > 1) this.currentPage2--;
             this.loadListBillC();
+        },
+
+        async CheckCreatedOrder(){
+            await this.listBillConfirm.forEach(async bill => {
+                const {data} = await this.$axios.get('/api/Delivery/ViettelPost/CheckOrderCreated?billId=' + bill.billId)
+                if(data === true){
+                    document.getElementById('create_order_'+ bill.billId).style.display = "none"
+                }
+                else{
+                    document.getElementById('create_order_'+ bill.billId).style.display = "block"
+                }
+            });
         },
 
 
@@ -281,6 +295,11 @@ export default {
             return url;
         },
 
+        getBillDeliveryurl(BillDeliveryId){
+            const url= 'Delivery/'+ BillDeliveryId;
+            return url;
+        },
+
         SearchBill(){
             fetch("https://localhost:44389/api/Bills/SearchBill?search="+this.searchbill)
                 .then(response => response.json())
@@ -291,9 +310,9 @@ export default {
 
         getDate(datetime) {
 
-            let date = new Date(datetime);
+            const date = new Date(datetime);
 
-            let dateString = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +
+            const dateString = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +
                             date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
 
             return dateString
